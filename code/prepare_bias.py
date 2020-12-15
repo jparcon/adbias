@@ -358,6 +358,10 @@ class Cubes(object):
 	
 	# cube = bias site representation
 	def get_cube(self, bs, grid):
+        
+		# check bias site is inside the docking box
+		if bs['x'] < grid['mx'] or bs['y'] < grid['my'] or bs['z'] < grid['mz'] or bs['x'] > grid['Mx'] or bs['y'] > grid['My'] or bs['z'] > grid['Mz']:
+			raise ValueError("At least one bias site is outside of the docking box.")
 
 		# no. of points in half the side of the cube
 		# (twice the size of the bias site to allow smooth energy modifications through space)
